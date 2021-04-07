@@ -5,27 +5,27 @@ import addressConfig from './address.config';
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    height: '100%',
+    flexDirection: 'column',
+    paddingLeft: '25mm',
+    paddingRight: '25mm',
+    position: 'absolute',
   },
   subheader: {
     fontSize: 10,
-    left: '25mm',
     top: '45mm',
   },
   gkaddress: {
     fontSize: 12,
-    left: '125mm',
+    left: '100mm',
     top: '50mm',
   },
   customerAddress: {
     fontSize: 12,
-    left: '25mm',
     top: `17.7mm`,
   },
   subject: {
     fontSize: 20, 
     fontWeight: 'bold', 
-    left: '25mm', 
     top: '51.6mm'
   },
   greeting: {
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     border: '2 solid black',
     fontSize: 12,
     top: '60mm',
-    left: '25mm',
     width: '150mm',
     flexDirection: 'row',
     marginBottom: '2mm'
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     border: '1 solid black',
     fontSize: 11,
     top: '60mm',
-    left: '25mm',
     width: '150mm',
     flexDirection: 'row',
   },
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
     borderBottom: '2 double black',
     fontSize: 11,
     top: '60mm',
-    left: '75mm',
+    left: '50mm',
     width: '100mm',
     flexDirection: 'row',
   },
@@ -63,18 +61,16 @@ const styles = StyleSheet.create({
   },
   lastStatement: {
     fontSize: 12,
-    left: '25mm',
     top: '80mm',
   },
   bank: {
+    position: 'absolute',
     fontSize: 10,
+    bottom: '10mm',
     left: '25mm',
-    top: '110mm',
     flexDirection: 'row', 
   },
-  end: {
-    width: '80mm',
-  }
+
 });
 
 const getActualDate = (invoiceNo=false) => {
@@ -102,30 +98,32 @@ const MyDocument = (props) => {
   return (
   <Document>
     <Page size="A4" style={styles.page} wrap={true}>
-      <Text style={styles.subheader}>
-        {`${addressConfig.firma}, ${addressConfig.strasseMitNummer}, ${addressConfig.plzMitOrt}`}
-      </Text>
-      <Text style={styles.gkaddress}>
-        {addressConfig.firma + "\n"
-        + addressConfig.strasseMitNummer + "\n"
-        + addressConfig.plzMitOrt + "\n"
-        + "E-mail: " + addressConfig.email + "\n"
-        + "Tel.: " + addressConfig.telefon + "\n"
-        + "Rechnungsdatum: " + getActualDate() + "\n\
-        R.-Nr.: " + getActualDate(true)}
-      </Text>
-      <Text style={styles.customerAddress}>
-        {
-          `${props.firma.firma ? props.firma.firma + '\n': ''}\
-          ${props.firma.firmenzusatz ? props.firma.firmenzusatz + '\n' : ''}\
-          ${props.anrede ? props.anrede : ''}
-          ${props.name.vorname}
-          ${props.name.nachname}
-          ${props.adresse.adresse}
-          ${props.adresse.zip}
-          `
-        }
-      </Text>
+      <View>
+        <Text style={styles.subheader}>
+          {`${addressConfig.firma}, ${addressConfig.strasseMitNummer}, ${addressConfig.plzMitOrt}`}
+        </Text>
+        <Text style={styles.gkaddress}>
+          {addressConfig.firma + "\n"
+          + addressConfig.strasseMitNummer + "\n"
+          + addressConfig.plzMitOrt + "\n"
+          + "E-mail: " + addressConfig.email + "\n"
+          + "Tel.: " + addressConfig.telefon + "\n"
+          + "Rechnungsdatum: " + getActualDate() + "\n\
+          R.-Nr.: " + getActualDate(true)}
+        </Text>
+        <Text style={styles.customerAddress}>
+          {
+            `${props.firma.firma ? props.firma.firma + '\n': ''}\
+            ${props.firma.firmenzusatz ? props.firma.firmenzusatz + '\n' : ''}\
+            ${props.anrede ? props.anrede : ''}
+            ${props.name.vorname}
+            ${props.name.nachname}
+            ${props.adresse.adresse}
+            ${props.adresse.zip}
+            `
+          }
+        </Text>
+      </View>
       <View style={styles.subject}>
         <Text>Rechnung</Text>
         <Text style={styles.greeting}>
@@ -149,7 +147,7 @@ const MyDocument = (props) => {
         props.preise
         ? props.preise.map(preis => {
           var total = 0.0;
-          if(preis[0] === "Pauschal"){
+          if(preis[0] === "Aufwandspauschale"){
             total = parseFloat(preis[1]);
           }
           else if(preis[0] === "Festmeter"){
@@ -162,7 +160,7 @@ const MyDocument = (props) => {
           return (
             <View style={styles.tableRow}>
               <Text style={styles.c}>{preis[0]}</Text>
-              <Text style={styles.c}>{preis[0] != "Pauschal" ? preis[1] : ''}</Text>
+              <Text style={styles.c}>{preis[0] != "Aufwandspauschale" ? preis[1] : '-'}</Text>
               <Text style={styles.c}>{total.toFixed(2)} €</Text>
             </View>
           )
@@ -182,8 +180,8 @@ const MyDocument = (props) => {
         <Text>{"Bitte überweisen Sie den Betrag auf das unten genannte Konto\n innerhalb von 14 Tagen ab Rechnungsdatum.\n\nMit freundlichen Grüßen\n\n\n" + addressConfig.firma}</Text>
       </View>
       <View fixed style={styles.bank}>
-        <Text style={styles.end}>{`Bankverbindung:\n${addressConfig.bankName}\nIBAN: ${addressConfig.iban}`}</Text>
-        <Text style={styles.end}>{`\nBIC: ${addressConfig.bic}\nSteuer-Nr. ${addressConfig.steuerNummer}`}</Text>
+        <Text style={{width: '80mm'}}>{`Bankverbindung:\n${addressConfig.bankName}\nIBAN: ${addressConfig.iban}`}</Text>
+        <Text >{`\nBIC: ${addressConfig.bic}\nSteuer-Nr. ${addressConfig.steuerNummer}`}</Text>
       </View>
     </Page>
   </Document>

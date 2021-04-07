@@ -19,6 +19,7 @@ const Anrede = (props) => {
                         onChange={handleChange}
                         label="Age"
                         style={{width: '160%'}}
+                        required
                         >
                         <MenuItem value="">
                         <em>--Bitte Auswählen</em>

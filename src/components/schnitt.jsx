@@ -28,11 +28,12 @@ const Schnitt = (props) => {
                         onChange={handleChange}
                         label="Age"
                         style={{width: '160%'}}
+                        required
                         >
                         <MenuItem value="">
                         <em>--Bitte Auswählen</em>
                         </MenuItem>
-                        <MenuItem value="Pauschal">Pauschal</MenuItem>
+                        <MenuItem value="Aufwandspauschale">Pauschale</MenuItem>
                         <MenuItem value="Festmeter">Festmeter</MenuItem>
                         <MenuItem value="Arbeitsstunden">Arbeitsstunden</MenuItem>
                     </Select>

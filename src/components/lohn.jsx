@@ -14,10 +14,10 @@ const Lohn = (props) => {
     return (
         <Grid container item xs={12} spacing={3}>
             <Grid item xs>
-                <TextField onChange={stundenlohnChange} value={props.lohn.stundenlohn} type="number" id="stundenlohn" label="Stundenlohn in €" variant="outlined" />
+                <TextField required onChange={stundenlohnChange} value={props.lohn.stundenlohn} type="number" id="stundenlohn" label="Stundenlohn in €" variant="outlined" />
             </Grid>
             <Grid item xs>
-                <TextField onChange={festmeterpreisChange} value={props.lohn.festmeterpreis} type="number" id="festmeterpreis" label="Festmeterpreis in €" variant="outlined" />
+                <TextField required onChange={festmeterpreisChange} value={props.lohn.festmeterpreis} type="number" id="festmeterpreis" label="Festmeterpreis in €" variant="outlined" />
             </Grid>
         </Grid>
     )

@@ -14,10 +14,10 @@ const Name = (props) => {
     return (
         <Grid container item xs={12} spacing={3}>
             <Grid item xs>
-                <TextField onChange={vornameChange} id="vorname" label="Vorname" variant="outlined" />
+                <TextField required onChange={vornameChange} id="vorname" label="Vorname" variant="outlined" />
             </Grid>
             <Grid item xs>
-                <TextField onChange={nachnameChange} id="nachname" label="Nachname" variant="outlined" />
+                <TextField required onChange={nachnameChange} id="nachname" label="Nachname" variant="outlined" />
             </Grid>
         </Grid>
     )

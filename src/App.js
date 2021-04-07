@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Anrede from './components/anrede';
 import { useEffect, useState } from 'react';
@@ -9,11 +8,10 @@ import Firma from './components/firma';
 import Name from './components/name';
 import Adresse from './components/addresse';
 import Steuern from './components/steuern';
-import Schnitt from './components/schnitt';
 import { Button, Grid } from '@material-ui/core';
 import SchnittHaufen from './components/schnitt-haufen';
 import Lohn from './components/lohn';
-import { BlobProvider, Document, Page, PDFDownloadLink, PDFViewer, Text, View } from '@react-pdf/renderer';
+import { PDFViewer} from '@react-pdf/renderer';
 import MyDocument from './pdf/MyDocument';
 import reactDom from 'react-dom';
 
@@ -56,6 +54,11 @@ function App() {
       }
     })
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setInvoice(true);
+  }
+
   return (
     <div className="App">
       <div className="">
@@ -70,17 +73,19 @@ function App() {
             <h4>Hallo Stephan! Das ist dein Rechnungsprogramm <ThumbUpIcon/></h4>
           </div>
           <div className="card-body">
-            <Grid container spacing={1}>
-              <Firma setFirma={setFirma} firma={firma}/>
-              <Anrede anrede={anrede} setAnrede={setAnrede} />
-              <Name setName={setName} name={name}/>
-              <Adresse setAdresse={setAdresse} adresse={adresse}/>
-              <Steuern setSteuern={setSteuern} steuern={steuern}/>
-              <Lohn setLohn={setLohn} lohn={lohn}/>
-            </Grid>
-            <SchnittHaufen setPreise={setPreise} preise={preise}/>
-            <hr/>
-            <Button onClick={(e) => setInvoice(true)} color="primary" variant="contained">Rechnung erstellen</Button>
+            <form onSubmit={onSubmit}>
+              <Grid container spacing={1}>
+                <Firma setFirma={setFirma} firma={firma}/>
+                <Anrede anrede={anrede} setAnrede={setAnrede} />
+                <Name setName={setName} name={name}/>
+                <Adresse setAdresse={setAdresse} adresse={adresse}/>
+                <Steuern setSteuern={setSteuern} steuern={steuern}/>
+                <Lohn setLohn={setLohn} lohn={lohn}/>
+              </Grid>
+              <SchnittHaufen setPreise={setPreise} preise={preise}/>
+              <hr/>
+              <Button type="submit" color="primary" variant="contained">Rechnung erstellen</Button>
+            </form>
           </div>
         </div>
       </div>

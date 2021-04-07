@@ -14,10 +14,10 @@ const Adresse = (props) => {
     return (
         <Grid container item xs={12} spacing={3}>
             <Grid item xs>
-                <TextField onChange={adresseChange} id="adresse" label="Straße und Hausnummer" variant="outlined" />
+                <TextField required onChange={adresseChange} id="adresse" label="Straße und Hausnummer" variant="outlined" />
             </Grid>
             <Grid item xs>
-                <TextField onChange={plzChange} id="plz" label="PLZ und Wohnort" variant="outlined" />
+                <TextField required onChange={plzChange} id="plz" label="PLZ und Wohnort" variant="outlined" />
             </Grid>
         </Grid>
     )
