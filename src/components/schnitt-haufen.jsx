@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import { Button, Grid} from '@material-ui/core';
 import Schnitt from './schnitt';
-import _ from 'lodash'
 
 const SchnittHaufen = (props) => {
 
-    const [schnitthaufen, setSchnitthaufen] = useState([]);
-
     const addItem = (index, value) => {
-        const schtt = schnitthaufen.map((haufen, i) => i === index ? value : haufen);
-        setSchnitthaufen(schtt);
+        const schtt = props.preise.map((haufen, i) => i === index ? value : haufen);
+        props.setPreise(schtt);
     }
 
     const deleteItem = (index) => {
-        const schtt = schnitthaufen.filter((v, i) => i !== index);
+        const schtt = props.preise.filter((v, i) => i !== index);
         console.log(schtt)
-        setSchnitthaufen(schtt)
+        props.setPreise(schtt)
     }
-
-    useEffect(() => {
-        props.setPreise(schnitthaufen);
-    }, [JSON.stringify(schnitthaufen)])
 
     return (
         <div>
             <Grid container spacing={1}>
                 {
-                    schnitthaufen.map((value, row) => {
+                    props.preise.map((value, row) => {
                         return(<Schnitt key={row} sh={value ? value[1] : null} rowNum={row} addItem={addItem} deleteItem={deleteItem}/>)
                     })
                 }
             </Grid>
             <Button className="mt-3" variant="contained" onClick={() => {
-                setSchnitthaufen([...schnitthaufen, ""])
+                props.setPreise([...props.preise, ""])
                 }}><AddIcon /> Hinzufügen</Button>
         </div>
        

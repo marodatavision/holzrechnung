@@ -108,8 +108,8 @@ const MyDocument = (props) => {
           + addressConfig.plzMitOrt + "\n"
           + "E-mail: " + addressConfig.email + "\n"
           + "Tel.: " + addressConfig.telefon + "\n"
-          + "Rechnungsdatum: " + getActualDate() + "\n\
-          R.-Nr.: " + getActualDate(true)}
+          + "Rechnungsdatum: " + getActualDate() + "\n"
+          + "R.-Nr.: " + getActualDate(true)}
         </Text>
         <Text style={styles.customerAddress}>
           {
@@ -160,7 +160,7 @@ const MyDocument = (props) => {
           return (
             <View style={styles.tableRow}>
               <Text style={styles.c}>{preis[0]}</Text>
-              <Text style={styles.c}>{preis[0] != "Aufwandspauschale" ? preis[1] : '-'}</Text>
+              <Text style={styles.c}>{preis[0] !== "Aufwandspauschale" ? preis[1] : '-'}</Text>
               <Text style={styles.c}>{total.toFixed(2)} €</Text>
             </View>
           )

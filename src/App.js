@@ -36,7 +36,7 @@ function App() {
   const [name, setName] = useState({});
   const [adresse, setAdresse] = useState({});
   const [steuern, setSteuern] = useState({steuer: 19, rabatt: 0});
-  const [preise, setPreise] = useState({});
+  const [preise, setPreise] = useState([]);
   const [lohn, setLohn] = useState({stundenlohn: 50, festmeterpreis: 50});
   const [invoice, setInvoice] = useState(false);
 
