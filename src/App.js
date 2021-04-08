@@ -11,21 +11,34 @@ import Steuern from './components/steuern';
 import { Button, Grid } from '@material-ui/core';
 import SchnittHaufen from './components/schnitt-haufen';
 import Lohn from './components/lohn';
-import { PDFViewer} from '@react-pdf/renderer';
+import {PDFDownloadLink} from '@react-pdf/renderer';
 import MyDocument from './pdf/MyDocument';
 import reactDom from 'react-dom';
 
 const MyDoc = (props) => (
   <div>
-    <PDFViewer width="100%" height="900px">
-      <MyDocument anrede={props.anrede}
-      firma={props.firma}
-      name={props.name}
-      adresse={props.adresse}
-      steuern={props.steuern}
-      preise={props.preise}
-      lohn={props.lohn}/>
-    </PDFViewer>
+    <div className="container card">
+        <div className="card-header"><h4>Rechnung erfolgreich generiert</h4></div>
+        <div className="card-body">
+          <p>Hier kannst du deine Rechnung herunterladen</p>
+          <PDFDownloadLink document={
+            <MyDocument anrede={props.anrede}
+            firma={props.firma}
+            name={props.name}
+            adresse={props.adresse}
+            steuern={props.steuern}
+            preise={props.preise}
+            lohn={props.lohn}/>
+            } fileName={`rechnung_${Date.now()}.pdf`}>
+              {({ blob, url, loading, error }) =>
+                loading ? 'Loading document...' : 
+                
+                    <a className="btn btn-lg btn-primary" href={url}>Download</a>
+                  
+              }
+          </PDFDownloadLink>
+      </div>
+    </div>
   </div>
 );
 
