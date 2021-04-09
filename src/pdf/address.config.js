@@ -1,5 +1,5 @@
 const addressConfig = {
-    firma: "G&K Holzschnitt Gbr",
+    firma: "G & K Holzschnitt Gbr",
     strasseMitNummer: "Quellengasse 9",
     plzMitOrt: "97797 Völkersleier",
     email: "stephan.koch@gmx.de",
@@ -7,7 +7,7 @@ const addressConfig = {
     bankName: "VR Bank Bad Kissingen / Bad Brückenau",
     iban: "DEXX XXXX XXXX XXXX XXXX XX",
     bic: "GENODEF1BRK",
-    steuerNummer: "XXX|XXX|XXXXX"
+    steuerNummer: null
 }
 
 export default addressConfig;

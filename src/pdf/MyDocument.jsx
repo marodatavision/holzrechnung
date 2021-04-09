@@ -1,6 +1,7 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import addressConfig from './address.config';
+import logo from './logo';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -9,6 +10,7 @@ const styles = StyleSheet.create({
     paddingLeft: '25mm',
     paddingRight: '25mm',
     position: 'absolute',
+    lineHeight: '1.2'
   },
   subheader: {
     fontSize: 10,
@@ -18,6 +20,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     left: '100mm',
     top: '50mm',
+    textAlign: 'right',
+    width: '60mm'
   },
   customerAddress: {
     fontSize: 12,
@@ -63,13 +67,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
     top: '80mm',
   },
-  bank: {
+  bank1: {
     position: 'absolute',
     fontSize: 10,
-    bottom: '10mm',
+    bottom: '15mm',
     left: '25mm',
     flexDirection: 'row', 
   },
+  bank2: {
+    position: 'absolute',
+    fontSize: 10,
+    bottom: '15mm',
+    right: '25mm',
+    textAlign: 'right'
+  },
+  logo: {
+    position: 'absolute',
+    right: '20mm',
+    top: '10mm',
+    width: '28%',
+    opacity: 0.5
+  }
 
 });
 
@@ -98,6 +116,7 @@ const MyDocument = (props) => {
   return (
   <Document>
     <Page size="A4" style={styles.page} wrap={true}>
+      <Image src={logo} style={styles.logo}/>
       <View>
         <Text style={styles.subheader}>
           {`${addressConfig.firma}, ${addressConfig.strasseMitNummer}, ${addressConfig.plzMitOrt}`}
@@ -167,11 +186,15 @@ const MyDocument = (props) => {
         })
         : null
       }
-      <View style={styles.tableRow}>
-        <Text style={styles.c}></Text>
-        <Text style={styles.c}> inkl. MwSt.</Text>
-        <Text style={styles.c}>{parseFloat(gesamt / (1.0 + steuer) * steuer).toFixed(2)} €</Text>
-      </View>
+      {
+        steuer > 0.0
+        ? <View style={styles.tableRow}>
+          <Text style={styles.c}></Text>
+          <Text style={styles.c}> inkl. MwSt.</Text>
+          <Text style={styles.c}>{parseFloat(gesamt / (1.0 + steuer) * steuer).toFixed(2)} €</Text>
+        </View>
+        : null
+      }
       <View style={styles.tableLast}>
         <Text style={styles.c}>Gesamt</Text>
         <Text style={styles.c}>{gesamt.toFixed(2)} €</Text>
@@ -179,10 +202,19 @@ const MyDocument = (props) => {
       <View style={styles.lastStatement}>
         <Text>{"Bitte überweisen Sie den Betrag auf das unten genannte Konto\n innerhalb von 14 Tagen ab Rechnungsdatum.\n\nMit freundlichen Grüßen\n\n\n" + addressConfig.firma}</Text>
       </View>
-      <View fixed style={styles.bank}>
-        <Text style={{width: '80mm'}}>{`Bankverbindung:\n${addressConfig.bankName}\nIBAN: ${addressConfig.iban}`}</Text>
-        <Text >{`\nBIC: ${addressConfig.bic}\nSteuer-Nr. ${addressConfig.steuerNummer}`}</Text>
-      </View>
+      
+        {
+          addressConfig.steuerNummer
+          ? <View fixed style={styles.bank1}>
+            <Text style={{width: '80mm'}}>{`Bankverbindung:\n${addressConfig.bankName}\nIBAN: ${addressConfig.iban}`}</Text>
+            <Text >{`\nBIC: ${addressConfig.bic}\nSteuer-Nr. ${addressConfig.steuerNummer}`}</Text>
+            </View>
+          : <View fixed style={styles.bank2}>
+            <Text style={{width: '80mm'}}>{`Bankverbindung:\n${addressConfig.bankName}\nIBAN: ${addressConfig.iban}\nBIC: ${addressConfig.bic}`}</Text>
+          </View>
+        }
+        
+      
     </Page>
   </Document>
 )};
