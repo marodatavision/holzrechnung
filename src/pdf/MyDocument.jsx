@@ -111,8 +111,9 @@ const getActualDate = (invoiceNo=false) => {
 
 // Create Document Component
 const MyDocument = (props) => {
-  var gesamt = 0;
+  var gesamt = 0.0;
   const steuer = props.steuern.steuer / 100;
+  const rabatt = props.steuern.rabatt / 100;
   return (
   <Document>
     <Page size="A4" style={styles.page} wrap={true}>
@@ -187,17 +188,26 @@ const MyDocument = (props) => {
         : null
       }
       {
+        rabatt > 0.0
+        ? <View style={styles.tableRow}>
+          <Text style={styles.c}></Text>
+          <Text style={styles.c}>Rabatt</Text>
+          <Text style={styles.c}>- {(gesamt * rabatt).toFixed(2)} €</Text>
+        </View>
+        : null
+      }
+      {
         steuer > 0.0
         ? <View style={styles.tableRow}>
           <Text style={styles.c}></Text>
           <Text style={styles.c}> inkl. MwSt.</Text>
-          <Text style={styles.c}>{parseFloat(gesamt / (1.0 + steuer) * steuer).toFixed(2)} €</Text>
+          <Text style={styles.c}>{((rabatt ? gesamt - (gesamt * rabatt) : gesamt) / (1.0 + steuer) * steuer).toFixed(2)} €</Text>
         </View>
         : null
       }
       <View style={styles.tableLast}>
         <Text style={styles.c}>Gesamt</Text>
-        <Text style={styles.c}>{gesamt.toFixed(2)} €</Text>
+        <Text style={styles.c}>{rabatt ? (gesamt - (gesamt * rabatt)).toFixed(2) : gesamt.toFixed(2)} €</Text>
       </View>
       <View style={styles.lastStatement}>
         <Text>{"Bitte überweisen Sie den Betrag auf das unten genannte Konto\n innerhalb von 14 Tagen ab Rechnungsdatum.\n\nMit freundlichen Grüßen\n\n\n" + addressConfig.firma}</Text>
