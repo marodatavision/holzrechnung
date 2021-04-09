@@ -149,8 +149,8 @@ const MyDocument = (props) => {
         <Text style={styles.greeting}>
           {
             props.anrede === "Herr"
-            ? `\n\n\nSehr geehrter Herr ${props.name.nachname}\n`
-            : `\n\n\nSehr geehrte Frau ${props.name.nachname}\n`
+            ? `\n\n\nSehr geehrter Herr ${props.name.nachname},\n`
+            : `\n\n\nSehr geehrte Frau ${props.name.nachname},\n`
           }
           {
             `\nvielen Dank für Ihren Einkauf bei ${addressConfig.firma}.
