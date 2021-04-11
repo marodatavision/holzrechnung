@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/holzrechnung/static/css/main.5d34691d.chunk.css",
-    "main.js": "/holzrechnung/static/js/main.f711212b.chunk.js",
-    "main.js.map": "/holzrechnung/static/js/main.f711212b.chunk.js.map",
+    "main.js": "/holzrechnung/static/js/main.e6e63798.chunk.js",
+    "main.js.map": "/holzrechnung/static/js/main.e6e63798.chunk.js.map",
     "runtime-main.js": "/holzrechnung/static/js/runtime-main.d18c171b.js",
     "runtime-main.js.map": "/holzrechnung/static/js/runtime-main.d18c171b.js.map",
     "static/css/2.ef9168ec.chunk.css": "/holzrechnung/static/css/2.ef9168ec.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.ef9168ec.chunk.css",
     "static/js/2.e950dd68.chunk.js",
     "static/css/main.5d34691d.chunk.css",
-    "static/js/main.f711212b.chunk.js"
+    "static/js/main.e6e63798.chunk.js"
   ]
 }
