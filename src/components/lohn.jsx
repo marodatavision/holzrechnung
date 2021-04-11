@@ -8,7 +8,7 @@ const Lohn = (props) => {
     }
 
     const festmeterpreisChange = (e) => {
-        props.setFestmeterpreis({...props.lohn, festmeterpreis: e.target.value});
+        props.setLohn({...props.lohn, festmeterpreis: e.target.value});
     }
 
     return (

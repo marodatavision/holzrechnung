@@ -33,7 +33,7 @@ const Schnitt = (props) => {
                         <MenuItem value="">
                         <em>--Bitte Auswählen</em>
                         </MenuItem>
-                        <MenuItem value="Aufwandspauschale">Pauschale</MenuItem>
+                        <MenuItem value="pauschal">Pauschale</MenuItem>
                         <MenuItem value="Festmeter">Festmeter</MenuItem>
                         <MenuItem value="Arbeitsstunden">Arbeitsstunden</MenuItem>
                     </Select>

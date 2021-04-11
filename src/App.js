@@ -49,7 +49,7 @@ function App() {
   const [name, setName] = useState({});
   const [adresse, setAdresse] = useState({});
   const [steuern, setSteuern] = useState({steuer: 0, rabatt: 0});
-  const [preise, setPreise] = useState([]);
+  const [preise, setPreise] = useState([""]);
   const [lohn, setLohn] = useState({stundenlohn: 50, festmeterpreis: 50});
   const [invoice, setInvoice] = useState(false);
 
@@ -87,6 +87,8 @@ function App() {
           </div>
           <div className="card-body">
             <form onSubmit={onSubmit}>
+              <h4>Kundendaten</h4>
+              <hr/>
               <Grid container spacing={1}>
                 <Firma setFirma={setFirma} firma={firma}/>
                 <Anrede anrede={anrede} setAnrede={setAnrede} />
@@ -95,6 +97,9 @@ function App() {
                 <Steuern setSteuern={setSteuern} steuern={steuern}/>
                 <Lohn setLohn={setLohn} lohn={lohn}/>
               </Grid>
+              <hr/>
+              <h4>Leistungen</h4>
+              <hr/>
               <SchnittHaufen setPreise={setPreise} preise={preise}/>
               <hr/>
               <Button type="submit" color="primary" variant="contained">Rechnung erstellen</Button>
