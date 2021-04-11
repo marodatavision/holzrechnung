@@ -177,8 +177,7 @@ const MyDocument = (props) => {
             `${props.firma.firma ? props.firma.firma + '\n': ''}\
             ${props.firma.firmenzusatz ? props.firma.firmenzusatz + '\n' : ''}\
             ${props.anrede ? props.anrede : ''}
-            ${props.name.vorname}
-            ${props.name.nachname}
+            ${props.name.vorname} ${props.name.nachname}
             ${props.adresse.adresse}
             ${props.adresse.zip}
             `
