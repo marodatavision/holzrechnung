@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/holzrechnung/static/css/main.5d34691d.chunk.css",
-    "main.js": "/holzrechnung/static/js/main.ac4ed118.chunk.js",
-    "main.js.map": "/holzrechnung/static/js/main.ac4ed118.chunk.js.map",
-    "runtime-main.js": "/holzrechnung/static/js/runtime-main.9e2711f6.js",
-    "runtime-main.js.map": "/holzrechnung/static/js/runtime-main.9e2711f6.js.map",
+    "main.js": "/holzrechnung/static/js/main.f711212b.chunk.js",
+    "main.js.map": "/holzrechnung/static/js/main.f711212b.chunk.js.map",
+    "runtime-main.js": "/holzrechnung/static/js/runtime-main.d18c171b.js",
+    "runtime-main.js.map": "/holzrechnung/static/js/runtime-main.d18c171b.js.map",
     "static/css/2.ef9168ec.chunk.css": "/holzrechnung/static/css/2.ef9168ec.chunk.css",
-    "static/js/2.0c07b662.chunk.js": "/holzrechnung/static/js/2.0c07b662.chunk.js",
-    "static/js/2.0c07b662.chunk.js.map": "/holzrechnung/static/js/2.0c07b662.chunk.js.map",
-    "static/js/3.9c66c558.chunk.js": "/holzrechnung/static/js/3.9c66c558.chunk.js",
-    "static/js/3.9c66c558.chunk.js.map": "/holzrechnung/static/js/3.9c66c558.chunk.js.map",
+    "static/js/2.e950dd68.chunk.js": "/holzrechnung/static/js/2.e950dd68.chunk.js",
+    "static/js/2.e950dd68.chunk.js.map": "/holzrechnung/static/js/2.e950dd68.chunk.js.map",
+    "static/js/3.fb4f56a5.chunk.js": "/holzrechnung/static/js/3.fb4f56a5.chunk.js",
+    "static/js/3.fb4f56a5.chunk.js.map": "/holzrechnung/static/js/3.fb4f56a5.chunk.js.map",
     "index.html": "/holzrechnung/index.html",
     "static/css/2.ef9168ec.chunk.css.map": "/holzrechnung/static/css/2.ef9168ec.chunk.css.map",
     "static/css/main.5d34691d.chunk.css.map": "/holzrechnung/static/css/main.5d34691d.chunk.css.map",
-    "static/js/2.0c07b662.chunk.js.LICENSE.txt": "/holzrechnung/static/js/2.0c07b662.chunk.js.LICENSE.txt",
+    "static/js/2.e950dd68.chunk.js.LICENSE.txt": "/holzrechnung/static/js/2.e950dd68.chunk.js.LICENSE.txt",
     "static/media/App.css": "/holzrechnung/static/media/board-header.ced84760.jpg",
     "static/media/cutting_wood.145ed0fa.mp4": "/holzrechnung/static/media/cutting_wood.145ed0fa.mp4"
   },
   "entrypoints": [
-    "static/js/runtime-main.9e2711f6.js",
+    "static/js/runtime-main.d18c171b.js",
     "static/css/2.ef9168ec.chunk.css",
-    "static/js/2.0c07b662.chunk.js",
+    "static/js/2.e950dd68.chunk.js",
     "static/css/main.5d34691d.chunk.css",
-    "static/js/main.ac4ed118.chunk.js"
+    "static/js/main.f711212b.chunk.js"
   ]
 }
