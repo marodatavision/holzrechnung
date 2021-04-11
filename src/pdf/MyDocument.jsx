@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   customerAddress: {
     position: 'absolute',
     fontSize: 12,
-    top: `32mm`,
+    top: `35mm`,
     width: '80mm'
   },
   subject: {

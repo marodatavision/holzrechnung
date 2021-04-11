@@ -44,9 +44,7 @@ const MyDoc = (props) => (
             lohn={props.lohn}/>
             } fileName={`rechnung_${Date.now()}.pdf`}>
               {({ blob, url, loading, error }) =>
-                loading ? 'Loading document...' : 
-                
-                    <a className="btn btn-lg btn-primary" href={url}>Download</a>
+                loading ? 'Loading document...' : window.open(url, "_self")
                   
               }
           </PDFDownloadLink>
@@ -96,6 +94,8 @@ function App() {
     if (hashPwd === "40993ef13b6ff202ddf4468f03bd76b9c6a12e517d205e6dcc1b8413bd85576e"){
       setLogin(true)
       setShowLoginForm(false);
+      setUsername("");
+      setPassword("");
     }
     else {
       alert("Falsches Passwort!")
