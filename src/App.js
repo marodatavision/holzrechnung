@@ -8,12 +8,25 @@ import Firma from './components/firma';
 import Name from './components/name';
 import Adresse from './components/addresse';
 import Steuern from './components/steuern';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, makeStyles, Modal, TextField } from '@material-ui/core';
 import SchnittHaufen from './components/schnitt-haufen';
 import Lohn from './components/lohn';
 import {PDFDownloadLink} from '@react-pdf/renderer';
 import MyDocument from './pdf/MyDocument';
 import reactDom from 'react-dom';
+
+const crypto = require('crypto');
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const MyDoc = (props) => (
   <div>
@@ -44,6 +57,8 @@ const MyDoc = (props) => (
 
 function App() {
 
+  const classes = useStyles();
+
   const [anrede, setAnrede] = useState("");
   const [firma, setFirma] = useState({});
   const [name, setName] = useState({});
@@ -52,6 +67,10 @@ function App() {
   const [preise, setPreise] = useState([""]);
   const [lohn, setLohn] = useState({stundenlohn: 50, festmeterpreis: 50});
   const [invoice, setInvoice] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   useEffect(() => {
       if(invoice){
@@ -72,21 +91,58 @@ function App() {
     setInvoice(true);
   }
 
+  const checkPwd = (e) => {
+    const hashPwd = crypto.createHash('sha256').update(password).digest('hex');
+    if (hashPwd === "40993ef13b6ff202ddf4468f03bd76b9c6a12e517d205e6dcc1b8413bd85576e"){
+      setLogin(true)
+      setShowLoginForm(false);
+    }
+    else {
+      alert("Falsches Passwort!")
+    }
+  }
+
+  const handleKeyPress = (e) => {
+    if(e.charCode === 13){
+      checkPwd();
+    }
+  }
+
   return (
-    <div className="App">
+    <div className="App"> 
       <div className="">
-        <Navbar />
+        <Navbar showLoginForm={showLoginForm}
+        setShowLoginForm={setShowLoginForm}/>
       </div>
       <video autoPlay muted loop id="myVideo" >
         <source src={video} type="video/mp4"/>
       </video>
       <div className="container">
+      <Modal
+        open={showLoginForm}
+        onClose={() => setShowLoginForm(false)}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div className={classes.paper}>
+        <TextField required onChange={(e) => setUsername(e.target.value)} value={username} id="username" label="Benutzername" variant="outlined" />
+        <TextField onKeyPress={handleKeyPress} type="password" required onChange={(e) => setPassword(e.target.value)} value={password} id="password" label="Passwort" variant="outlined" />
+        <Button onClick={checkPwd} color="primary" variant="contained">einloggen</Button>
+        </div>
+      </Modal>
         <div className="card">
           <div className="card-header board-header">
-            <h4>Hallo Stephan! Das ist dein Rechnungsprogramm <ThumbUpIcon/></h4>
+            {
+              !login
+              ? <h4>Willkommen bei Holzrechnung</h4>
+              : <h4>Hallo {username}! Das ist dein Rechnungsprogramm <ThumbUpIcon/></h4>
+            }
           </div>
           <div className="card-body">
-            <form onSubmit={onSubmit}>
+            {
+              !login
+              ? <p>Hier kannst du deine Holzrechnungen schreiben.</p>
+              : <form onSubmit={onSubmit}>
               <h4>Kundendaten</h4>
               <hr/>
               <Grid container spacing={1}>
@@ -104,6 +160,7 @@ function App() {
               <hr/>
               <Button type="submit" color="primary" variant="contained">Rechnung erstellen</Button>
             </form>
+            }
           </div>
         </div>
       </div>
